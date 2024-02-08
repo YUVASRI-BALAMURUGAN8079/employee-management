@@ -1,0 +1,269 @@
+type Query {
+	getAllAadhar:[Aadhar]
+	getAllAnnouncements:[Announcement]
+	getAllDegreeAndCertificate:[DegreeAndCertificate]
+	getAllDepartments : [Department]
+	getAllDesignations:[Designation]
+	getAllDetails:[Details]
+	getAllDrivingLicense:[DrivingLicense]
+	getAllEmployee:[Employee]
+	getAllEvents:[Event]
+	getAllExperience:[Experience]
+	getAllHoliday:[Holiday]
+	getAllLeaveBalance:[LeaveBalance]
+	getAllLeaveRequest:[LeaveRequest]
+	getAllModes:[Mode]
+	getAllPan:[Pan]
+	getAllPaymentInformation:[PaymentInformation]
+	getAllReportingRecords:[ReportingTable]
+	getAllResignation:[Resignation]
+	getAllSalary:[Salary]
+	#By Employee Id
+	getAllVoterCard:[VoterCard]
+	getAadharByEmployeeId(id:ID):Aadhar
+	findAnnouncementByAnnouncedEmployee(id:ID!):[Announcement]
+	findAnnouncementByApprovedEmployee(id:ID!):[Announcement]
+	getDegreeAndCertificateByEmployeeId(id:ID!):[DegreeAndCertificate]
+	getDepartmentByEmpId(id:ID!):Department
+	getDesignationByEmployeeId(id:ID!):Designation
+	getDetailsByEmployeeId(id:ID!):Details
+	getDrivingLicenseByEmployeeId(id:ID!):DrivingLicense
+	getEmployeeById(id:ID!):Employee
+	getEventsByOrganiserId(id:ID!):[Event]
+	getEventById(id:ID!):Event
+	getExperienceByEmployeeId(id:ID!):[Experience]
+	getHolidayById(id:ID!):Holiday
+	getLeaveBalanceByEmployeeId(id:ID!):LeaveBalance
+	getLeaveBalanceById(id:ID!):LeaveBalance
+	getLeaveRequestByEmployeeId(id:ID!):[LeaveRequest]
+	getLeaveRequestById(id:ID!):LeaveRequest
+	getModeByEmployeeId(id:ID!):Mode
+	getPanByEmployeeId(id:ID!):Pan
+	getPaymentInformationByEmployeeId(id:ID!):PaymentInformation
+	getReportingManagerByEmployeeId(id:ID!):Employee
+	getEmployeesByReportingManagerId(id:ID!):[Employee]
+	getResignationByEmployeeId(id:ID!):Resignation
+	getResignationByEmployeeId(id:ID!):Resignation
+	getResignationById(id:ID!):Resignation
+	getSalaryByEmployeeId(id:ID!):Salary
+	getVoterCardByEmployeeId(id:ID):VoterCard
+}
+
+type Resignation{
+	id:ID
+	resignationAppliedDate:String
+	reason:String
+	feedback:String
+	finalWorkingDate:String
+	employee:Employee
+}
+
+type LeaveRequest{
+	id:ID!
+	startDate :String
+	endDate:String
+	leaveType:String
+	requestedDays:Int
+	employee:Employee
+}
+
+type LeaveBalance{
+	id:ID
+	totalWorkFromHome:Int
+	totalCasualLeave:Int
+	totalMarriageLeave:Int
+	totalSickLeave:Int
+	totalPaidLeave:Int
+	totalFloaterLeave:Int
+	totalWorkFromHomeTaken:Int
+	totalCasualLeaveTaken:Int
+	totalMarriageLeaveTaken:Int
+	totalSickLeaveTaken:Int
+	totalPaidLeaveTaken:Int
+	totalFloaterLeaveTaken:Int
+	availableWorkFromHome:Int
+	availableCasualLeave:Int
+	availableMarriageLeave:Int
+	availableSickLeave:Int
+	availablePaidLeave:Int
+	availableFloaterLeave:Int
+	unpaidLeave:Int
+	totalLeave:Int
+	totalLeaveTaken:Int
+	totalLeaveAvailable:Int
+	employee:Employee
+}
+
+
+#Individual entity details
+
+type Aadhar{
+	id:ID
+	aadharNumber:String!
+	dob:String
+	name:String
+	address:String
+	gender:String
+	employee:Employee
+}
+type Announcement{
+	id:ID
+	title:String
+	content:String
+	announcementDate:String
+	announcedEmployee:Employee
+	approvedEmployee:Employee
+}
+type DegreeAndCertificate{
+	id:ID!
+	degree:String
+	specialization:String
+	yearOfJoining:Int
+	yearOfCompletion:Int
+	cgpa:Int
+	college:String
+	employee:Employee
+}
+
+type Department{
+	id:ID!
+	name : String!
+	Date:String
+}
+
+type Designation{
+	id:ID!
+	name:String!
+}
+
+type Details{
+	id:ID
+	name:String
+	gender:String
+	dob:String
+	maritalStatus:String
+	bloodGroup:String
+	physicallyChallenged:Boolean
+	workEmail:String
+	personalEmail:String
+	mobilePhone:String
+	currentAddress:String
+	permanentAddress:String
+	employee:Employee
+}
+
+type DrivingLicense{
+	id:ID!
+	licenseNumber:String
+	name:String
+	dob:String
+	bloodGroup:String
+	fatherName:String
+	dateOfIssue:String
+	validTill:String
+	address:String
+	employee:Employee
+}
+
+type Employee {
+	id: ID!
+	firstName: String!
+	lastName: String!
+	dateOfJoining:String
+	yearOfService:Int
+	workingStatus:Boolean
+	designation: Designation!
+	department: Department!
+	mode:Mode!
+}
+
+type Event{
+	id:ID
+	eventName:String
+	eventDate:String
+	eventDay:String
+	eventLocation:String
+	eventDescription:String
+	allocatedFunds:Long
+	employee:Employee
+}
+
+type Experience{
+	id:ID
+	companyName:String
+	jobTitle:String
+	dateOfJoining:String
+	dateOfRelieving:String
+	experience:Int
+	location:String
+	description:String
+	employee:Employee
+}
+
+type Holiday{
+	id:ID
+	holidayName:String
+	holidayDate:String
+	holidayDay:String
+	isFloater:Boolean
+}
+
+type Mode{
+	id:ID
+	name:String
+	#employee:Employee
+}
+
+type Pan{
+	id:ID
+	panNumber:String
+	name:String
+	dob:String
+	parentOrSpouseName:String
+	employee:Employee
+
+}
+
+type PaymentInformation{
+	id:ID
+	salaryPaymentMode:String
+	bankName:String
+	accountNumber:String
+	ifscCode:String
+	nameOfTheAccount:String
+	pfStatus:Boolean
+	pfNumber:String
+	pfJoinDate:String
+	nameOnThePFAccount:String
+	employee:Employee
+}
+
+type ReportingTable{
+	id:ID!
+	employee:Employee
+	reportingEmployee:Employee
+}
+
+type Salary{
+	id:ID!
+	monthlyBasic:Long
+	monthlyHRA:Long
+	monthlySpecialAllowance:Long
+	monthlyCTC:Long
+	annuallyBasic:Long
+	annuallyHRA:Long
+	annuallySpecialAllowance:Long
+	annualCTC:Long
+	employee:Employee
+}
+
+type VoterCard{
+	id:ID
+	voterId:String
+	name:String
+	fatherName:String
+	gender:String
+	dob:String
+	address:String
+	employee:Employee
+}

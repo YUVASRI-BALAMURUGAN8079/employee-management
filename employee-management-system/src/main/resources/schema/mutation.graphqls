@@ -1,0 +1,338 @@
+type Mutation {
+    addAadharDetailsByEmployeeId(aadharInput:AadharInput):Aadhar
+    addAnnouncement(announcementInput:AnnouncementInput):Announcement
+    addDegreeAndCertificate(degreeAndCertificateInput:DegreeAndCertificateInput):DegreeAndCertificate
+    addDepartment(departmentInput:DepartmentInput):Department
+    addDesignation(designationInput:DesignationInput):Designation
+    addDetails(detailsInput:DetailsInput):Details
+    addDrivingLicense(drivingLicenseInput:DrivingLicenseInput):DrivingLicense
+    addEmployee(employeeInput: EmployeeInput):Employee
+    addEvent(eventInput:EventInput):Event
+    addExperience(experienceInput:ExperienceInput):Experience
+    addHoliday(holidayInput:HolidayInput ):Holiday
+    addLeaveBalanceBalanceByEmployee(id:ID!):String
+    addLeaveRequest(leaveRequestInput:LeaveRequestInput ):String
+    addMode(modeInput:ModeInput):Mode
+    addPan(panInput:PanInput):Pan
+    addPaymentInformation(paymentInformationInput:PaymentInformationInput):PaymentInformation
+    addReportingData(reportingTableInput:ReportingTableInput):ReportingTable
+    addResignation(resignationInput:ResignationInput ):String
+    addResignationWithAlternateManager(resignationInput:ResignationInput ,id:ID!):String
+    addSalaryToEmployeeById(salaryInput:SalaryInput):Salary
+    #Update
+    addVoterCardDetailsById(voterCardInput:VoterCardInput):VoterCard
+    updateAadharByEmployeeId(aadharInput:AadharInput ):Aadhar
+    updateAnnouncementById(announcementInput:updateAnnouncementInput):Announcement
+    updateDegreeAndCertificateById(degreeAndCertificateInput:updateDegreeAndCertificateInput):DegreeAndCertificate
+    updateDepartmentByDepartmentId(departmentInput:updateDepartmentInput ):Department
+    updateDesignationByDesignationId(designationInput:updateDesignationInput ):Designation
+    updateDetailsByEmployeeId(detailsInput:DetailsInput):Details
+    updateDrivingLicenseByEmployeeId(drivingLicenseInput:DrivingLicenseInput ):DrivingLicense
+    updateEmployeeByEmployeeId(employeeInput:updateEmployeeInput ):Employee
+    updateEvent(eventInput:updateEvent):Event
+    updateExperienceById(experienceInput:updateExperienceInput ):Experience
+    updateHolidayById(holidayInput:HolidayInput ):Holiday
+    updateModeById(modeInput:updateModeInput ):Mode
+    updatePanByEmployeeId(panInput:PanInput ):Pan
+    updatePaymentInformationByEmployeeId(PaymentInformationInput:PaymentInformationInput):PaymentInformation
+    updateReportingTableByEmployeeId(reportingTableInput:ReportingTableInput):String
+    updateResignationByEmployeeId(resignationInput:updateResignationInput ):Resignation
+    updateSalaryByEmployeeId(salaryInput:SalaryInput ):Salary
+    #Deletion
+    updateVoterCardByEmployeeId( voterCardInput:VoterCardInput):VoterCard
+    deleteAnnouncementById(id:ID!):String
+    deleteDepartmentById(id:ID!):String
+    deleteDesignationById(id:ID!):String
+    deleteEventById(id:ID!):String
+    deleteHolidayById(id:ID!):String
+    deleteLeaveBalanceForEmployeeByEmployeeId(id:ID!):String
+    deleteModeById(id:ID!):String
+
+
+}
+#initializeLeaveBalance(id:ID!):String
+input ReportingTableInput{
+    reportingEmployeeId:ID!
+    reportingManagerId:ID!
+}
+
+input ResignationInput{
+    employeeId:ID!
+    resignationAppliedDate:String
+    reason:String
+    feedback:String
+    finalWorkingDate:String
+}
+input updateResignationInput{
+    #id:ID!
+    employeeId:ID!
+    resignationAppliedDate:String
+    reason:String
+    feedback:String
+    finalWorkingDate:String
+}
+
+input LeaveRequestInput{
+    empId:ID!
+    startDate :String
+    endDate:String
+    leaveType:String
+}
+input updateLeaveRequest{
+    id:ID!
+    empId:ID!
+    startDate :String
+    endDate:String
+    leaveType:String
+    requestedDays:Int
+}
+input LeaveBalanceInput{
+    employeeId:ID!
+    totalWorkFromHome:Int
+    totalCasualLeave:Int
+    totalMarriageLeave:Int
+    totalSickLeave:Int
+    totalPaidLeave:Int
+    totalFloaterLeave:Int
+    totalWorkFromHomeTaken:Int
+    totalCasualLeaveTaken:Int
+    totalMarriageLeaveTaken:Int
+    totalSickLeaveTaken:Int
+    totalPaidLeaveTaken:Int
+    totalFloaterLeaveTaken:Int
+    availableWorkFromHome:Int
+    availableCasualLeave:Int
+    availableMarriageLeave:Int
+    availableSickLeave:Int
+    availablePaidLeave:Int
+    availableFloaterLeave:Int
+    unpaidLeave:Int
+    totalLeave:Int
+    totalLeaveTaken:Int
+    totalLeaveAvailable:Int
+}
+
+
+
+input updateAnnouncementInput{
+    id:ID!
+    title:String
+    content:String
+    announcementDate:String
+    announcedEmployeeId:ID
+    approvedEmployeeId:ID
+
+}
+
+input EventInput{
+    eventName:String
+    eventDate:String
+    #eventDay:String
+    eventLocation:String
+    eventDescription:String
+    allocatedFunds:Long
+    organizerId:ID
+}
+
+input updateEvent{
+    id:ID!
+    eventName:String
+    eventDate:String
+    #eventDay:String
+    eventLocation:String
+    eventDescription:String
+    allocatedFunds:Long
+    organizerId:ID
+}
+
+input HolidayInput{
+    #id:ID
+    holidayName:String
+    holidayDate:String
+    #holidayDay:String
+    isFloater:Boolean
+}
+input AnnouncementInput{
+    title:String
+    content:String
+    announcementDate:String
+    announcedEmployeeId:ID!
+    approvedEmployeeId:ID!
+
+}
+
+input updateDegreeAndCertificateInput{
+    id:ID!
+    employeeId:ID
+    degree:String
+    specialization:String
+    yearOfJoining:Int
+    yearOfCompletion:Int
+    cgpa:Int
+    college:String
+}
+
+input updateDepartmentInput{
+    departmentId:ID
+    departmentName:String
+}
+
+input updateDesignationInput{
+    designationId:ID!
+    designationName:String
+}
+
+input updateEmployeeInput{
+    employeeId:ID!
+    firstName:String
+    lastName:String
+    dateOfJoining:String
+    workingStatus:Boolean
+    #yearOfService:Int
+    departmentId:ID
+    designationId:ID
+    modeId:ID
+}
+
+input updateExperienceInput{
+    experienceId:ID!
+    employeeId:ID
+    companyName:String
+    jobTitle:String
+    dateOfJoining:String
+    dateOfRelieving:String
+    #experience:Int
+    location:String
+    description:String
+}
+input updateHoliday{
+id:ID!
+holidayName:String
+holidayDate:String
+#holidayDay:String
+isFloater:Boolean
+}
+input updateModeInput{
+    modeId:ID!
+    modeName:String
+}
+
+input AadharInput{
+    employeeId:ID!
+    aadharNumber:String!
+    dob:String
+    name:String
+    address:String
+    gender:String
+}
+
+input DegreeAndCertificateInput{
+    employeeId:ID
+    degree:String
+    specialization:String
+    yearOfJoining:Int
+    yearOfCompletion:Int
+    cgpa:Int
+    college:String
+}
+
+input DepartmentInput{
+    departmentName:String
+}
+
+input DesignationInput{
+    designationName:String
+}
+
+input DetailsInput{
+    employeeId:ID!
+    name:String
+    gender:String
+    dob:String
+    maritalStatus:String
+    bloodGroup:String
+    physicallyChallenged:Boolean
+    workEmail:String
+    personalEmail:String
+    mobilePhone:String
+    currentAddress:String
+    permanentAddress:String
+    password:String
+}
+
+input DrivingLicenseInput{
+    employeeId:ID!
+    licenseNumber:String
+    name:String
+    dob:String
+    bloodGroup:String
+    fatherName:String
+    dateOfIssue:String
+    validTill:String
+    address:String
+}
+
+input EmployeeInput{
+    firstName:String
+    lastName:String
+    dateOfJoining:String
+    workingStatus:Boolean
+    #yearOfService:Int
+    departmentId:ID
+    designationId:ID
+    modeId:ID
+}
+
+input ExperienceInput{
+    employeeId:ID
+    companyName:String
+    jobTitle:String
+    dateOfJoining:String
+    dateOfRelieving:String
+    location:String
+    description:String
+}
+
+input ModeInput{
+    modeName:String
+}
+
+input PanInput{
+    employeeId:ID!
+    panNumber:String
+    name:String
+    dob:String
+    parentOrSpouseName:String
+}
+
+input PaymentInformationInput{
+    employeeId:ID!
+    salaryPaymentMode:String
+    bankName:String
+    accountNumber:String
+    ifscCode:String
+    nameOfTheAccount:String
+    pfStatus:Boolean
+    pfNumber:String
+    pfJoinDate:String
+    nameOnThePFAccount:String
+}
+
+
+
+input SalaryInput{
+    employeeId:ID!
+    monthlyBasic:Long
+    monthlyHRA:Long
+    monthlySpecialAllowance:Long
+}
+
+input VoterCardInput{
+    employeeId:ID!
+    voterId:String
+    name:String
+    fatherName:String
+    gender:String
+    dob:String
+    address:String
+}
